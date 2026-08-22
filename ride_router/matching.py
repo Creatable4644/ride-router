@@ -2,10 +2,16 @@
 Driver matching: given a ride request, pick the best eligible, available driver
 and atomically claim them so no two concurrent requests can grab the same driver.
 
-This module is deliberately small and pure. It does not know about HTTP, the
-database, or any external provider — those are injected as dependencies (see
-`providers.py`). That separation is the whole point: the matching
-policy can be read, reasoned about, and unit-tested on its own.
+This module is deliberately small and simple - I have silo'd it away from external
+dependencies so that it can house and execute the logic of the matching policy
+unencumbered by downstream effects as much as possible. This way, if the logic needs to
+be challenged or changed or tested, you can clearly see and understand what it's doing
+and update and unit-test as needed all in one file, without worrying about where else in the
+project has to be updated accordingly. That's a big part of why the dataclass
+enforcement is here, which would arguably be overkill for a demo normally - I want to demo how
+hard I think about and craft around locking in consistency where it matters so we don't end up with
+'oh no, I forgot that appending a new value to the Driver dict in here is going to break the rider
+endpoint six steps down' issues.
 """
 
 from __future__ import annotations

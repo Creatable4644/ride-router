@@ -1,12 +1,12 @@
 # ride-router
 
-A small, well-structured **driver-matching service**: given a ride request, it picks the best eligible, available driver and *atomically* claims them so two concurrent requests can never grab the same driver.
+A small, well-structured **driver-matching service**: given a ride request, it picks the best eligible, available driver and atomically claims them so two concurrent requests can never grab the same driver.
 
 It's intentionally compact. The goal isn't feature coverage — it's to show how I structure a real-time routing system: clean separation between the matching policy and the plumbing, a concurrency guarantee that actually holds under load, and honest failure handling.
 
 ## Why this exists
 
-I maintain a production lead-routing API that does this kind of work at ~2,000 requests/second. This project distills the parts of that problem that are interesting and portable — real-time matching, safe concurrent claiming, fail-closed external calls — into something small enough to read in a few minutes.
+I maintained a production lead-routing API that does this kind of work at ~2,000 requests/second (see `PROJECT_WRITEUP.md`). This project distills the parts of that problem that are interesting and portable — real-time matching, safe concurrent claiming, fail-closed external calls — into something small enough to read in a few minutes.
 
 ## The design in one screen
 
@@ -45,4 +45,4 @@ curl -s localhost:5000/match -X POST -H 'content-type: application/json' \
 
 ## What I'd add next (and deliberately left out)
 
-Kept out to stay readable: a real HTTP availability client, persistence, retry/backoff on the claim TTL, metrics, and auth. The point here is the shape of the core, not the surface area — those are straightforward extensions of the structure above.
+Kept out to stay readable: a real HTTP availability client, persistence, retry/backoff on the claim TTL, metrics, and auth. Additionally, the kind of detailed and varying error handling needed when a lot of external dependencies are involved, with systems that can respond strangely in many different and surprising ways. The point here is the shape of the core, not the surface area — those are straightforward extensions of the structure above.

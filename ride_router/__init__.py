@@ -1,1 +1,1 @@
-"""ride_router — a compact, well-structured driver-matching service."""
+"""ride_router — a clean and compact driver-matching service."""

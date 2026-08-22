@@ -3,8 +3,9 @@ The external supply of drivers.
 
 In a real system this is a network call to one or more driver-availability
 services. Those calls fail, time out, and occasionally return nonsense with a
-200 status. The job of this layer is to turn all of that into one honest,
-predictable answer: a (possibly empty) list of `Driver`s, and never a surprise.
+200 status. The job of this layer is to turn all of that into one actionable
+answer, raise flags when an external service might be failing and affecting results,
+and mitigate surprises.
 
 Design choices worth noting:
 
@@ -16,6 +17,14 @@ Design choices worth noting:
 - **The caller can always tell what happened.** We log the failure at WARNING
   (something worth looking at) rather than swallowing it silently, so a spike in
   empty results is visible instead of masquerading as "no drivers nearby."
+
+- **Exclusions for readability.** In a real environment, depending on the
+  intricacies and customs of the external providers, I'd probably have much more detailed
+  and varied error handling to manage cases like 'I got a 200, but the content says 'error', or
+  'I got an available Driver returned but they are clearly not even in this zip code.', or
+  'I got a gateway error 100 times in a row, we need to call somebody' - this would be too much
+  unnecessary noise for a demo of essential functionality, but prod environments with external
+  dependencies are full of unnecessary noise that I'd be planning for.
 """
 
 from __future__ import annotations

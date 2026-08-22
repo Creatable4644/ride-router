@@ -1,6 +1,8 @@
 # Real-Time Lead Routing API — Project Overview
 
-*A portfolio writeup of a production system I own and maintain. Company- and vendor-specific details are generalized; no proprietary code or data is included.*
+*A portfolio writeup of a production system I owned and maintained. Company- and vendor-specific details are generalized; no proprietary code or data is included.*
+
+*AI Transparency - Claude wrote this, within the context of an onboarding doc creation project I was working on - I gave Claude all of the scripts within the project and detailed descriptions of what it does, where the weak spots were, what I'd added, what I'd change if I had the time, etc. The written words from here are Claude's (with some editing from me where facts were slightly off), but written about a system that was mine.*
 
 ## What it is
 

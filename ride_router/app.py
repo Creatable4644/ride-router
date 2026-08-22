@@ -4,7 +4,7 @@ A thin HTTP layer over the matching engine.
 The endpoint does as little as possible: parse the request, call the engine, and
 shape the response. All the real logic lives in `matching.py` and is testable
 without ever starting a web server. Keeping the transport layer thin is what
-lets the interesting part stay honest and small.
+lets the interesting part stay readable and small for demonstration purposes.
 
 Run the demo:  python -m ride_router.app
 """
