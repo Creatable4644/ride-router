@@ -1,4 +1,5 @@
 # ride-router
+![tests](https://github.com/Creatable4644/ride-router/actions/workflows/test.yml/badge.svg)
 
 A small, well-structured **driver-matching service**: given a ride request, it picks the best eligible, available driver and atomically claims them so two concurrent requests can never grab the same driver.
 
